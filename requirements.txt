@@ -1,0 +1,2 @@
+aiohttp==3.6.2
+schedule==0.6.0
