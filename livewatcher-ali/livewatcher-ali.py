@@ -40,7 +40,7 @@ def cache():
         resp_json = get_bili_status(uid)
         status = resp_json['data']['live_room']['liveStatus']
         if uid not in live_cache:
-            live_cache[uid] = 'false'
+            live_cache[uid] = 'true'
         if live_cache[uid] == 'true':
             if status == 0:
                 live_cache[uid] = 'false'
