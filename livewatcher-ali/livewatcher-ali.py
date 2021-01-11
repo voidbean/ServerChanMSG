@@ -53,7 +53,7 @@ def cache():
     for channel_id in ytb_live_idx:
         result = get_ytb_status(channel_id)
         if channel_id not in live_cache:
-            live_cache[channel_id] = 'false'
+            live_cache[channel_id] = 'true'
         if live_cache[channel_id] == 'true':
             if result['status'] == '0':
                 live_cache[channel_id] = 'false'
