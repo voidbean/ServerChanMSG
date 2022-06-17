@@ -8,7 +8,7 @@ bili_live_idx = ['692283831']
 #ytb上的channelId, 具体值可以通过页面点进去后的url获得
 ytb_live_idx = ['UCMmpLL2ucRHAXbNHiCPyIyg', 'UCrwJvtphcyux30pAgoX68jA']
 
-bili_url = "http://api.bilibili.com/x/space/acc/info"
+bili_url = "https://api.bilibili.com/x/space/app/index"
 ytb_url = "https://www.youtube.com/channel"
 server_chan_url = f"https://sc.ftqq.com/{SCKEY}.send"
 
@@ -38,7 +38,7 @@ def send(title, message):
 def cache():
     for uid in bili_live_idx:
         resp_json = get_bili_status(uid)
-        status = resp_json['data']['live_room']['liveStatus']
+        status = resp_json['data']['info']['live']['liveStatus']
         if uid not in live_cache:
             live_cache[uid] = 'true'
         if live_cache[uid] == 'true':
@@ -47,8 +47,8 @@ def cache():
         else:
             if status == 1:
                 live_cache[uid] = 'true'
-                title = f"您关注的{resp_json['data']['name']}开播了!"
-                message = f"直播标题:{resp_json['data']['live_room']['title']}\n{resp_json['data']['live_room']['url']}"
+                title = f"您关注的{resp_json['data']['info']['name']}开播了!"
+                message = f"直播标题:{resp_json['data']['info']['live']['title']}\n{resp_json['data']['info']['live']['url']}"
                 send(title, message)
     for channel_id in ytb_live_idx:
         result = get_ytb_status(channel_id)
